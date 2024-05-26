@@ -1,6 +1,4 @@
 # IT6-FINAL-DRILL
-# IT6-FINAL-DRILL
-
 Project Description
 
 This project aimed to develop a versatile CRUD (Create, Read, Update, Delete) REST API tailored for MYSQL databases. Its purpose is to facilitate the creation of an interface that seamlessly connects users to the database, enabling interaction via JSON-formatted data. Through rigorous testing and thoughtful design, this code strives to fulfill its intended functionality reliably, ensuring a robust platform capable of accommodating diverse client needs.
