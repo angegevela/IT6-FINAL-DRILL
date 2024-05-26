@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US NAVY </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        /*style.css*/
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    background: #f3f3f3;
+    flex-direction: column;
+    margin: 0;
+}
+
+.main {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    max-width: 500px; /* Changed width to max-width */
+    text-align: center;
+    margin: 0 auto; /* Added margin: 0 auto; */
+}
+
+h1 {
+    color: #4CAF50;
+}
+
+label {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
+}
+
+
+input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #4CAF50;
+    width: 100%;
+    font-size: 16px;
+}
+
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.search-bar {
+    margin-top: 200px; /* Add margin-top for gap */;
+}
+
+.search-bar input {
+    display: inline-block; /* Make input and button appear on the same line */
+    width: calc(135% - 120px); /* Adjust width based on button width */
+    margin-right: 20px; /* Add some space between input and button */
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.search-bar button {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #4CAF50;
+    font-size: 16px;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <head>
+            <title>HTML Login Form</title>
+            <link rel="stylesheet" 
+                  href="style.css">
+        </head>
+        
+        <body>
+            <div class="main">
+                <h1>GeeksforGeeks</h1>
+                <h3>Enter your login credentials</h3>
+                <form action="">
+                    <label for="first">
+                          Username:
+                      </label>
+                    <input type="text" 
+                           id="first"
+                           name="first" 
+                           placeholder="Enter your Username" required>
+        
+                    <label for="password">
+                          Password:
+                      </label>
+                    <input type="password"
+                           id="password" 
+                           name="password" 
+                           placeholder="Enter your Password" required>
+        
+                    <div class="wrap">
+                        <button type="submit"
+                                onclick="solve()">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+                <p>Not registered? 
+                    <a href="register.html" style="text-decoration: none;">Create an account</a>
+                    </a>
+                </p>
+            </div>
+        </body>
+
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        
+        <div class="search-bar">
+            <input type="text" id="search" name="search" placeholder="Search..." >
+            <button type="button" onclick="search()" class="search-button">Search</button>
+    </div>
+    <script>
+        function solve(endpoint) {
+            event.preventDefault();  // Prevent the form from submitting the default way
+    
+            var formData = new FormData(document.getElementById(endpoint + 'Form'));
+            var jsonData = {};
+            formData.forEach(function(value, key) {
+                jsonData[key] = value;
+            });
+    
+            fetch('/' + endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);  // Display response message
+                // Optionally, handle redirection or other actions based on response
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    
+        function search() {
+            var searchQuery = document.getElementById('search').value;
+            fetch('/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ search: searchQuery }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.results);  // Handle search results
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+
+</html>
